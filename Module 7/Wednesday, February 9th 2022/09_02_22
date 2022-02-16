@@ -1,0 +1,110 @@
+SELECT rating,
+COUNT (title) AS total_movies_206 
+FROM film
+WHERE release_year = 2006
+GROUP BY rating;
+--------------------------------------------------
+SELECT rating, release_year
+COUNT (title) AS total_movies_206
+MAX(rental_rate) AS max_rate
+MIN(replacement_cost) AS min_repl_cost
+AVG(rental_duration) AS avg_rental_dur 
+FROM film
+WHERE release_year = 2006
+GROUP BY rating;
+--------------------------------------------------
+SELECT rating, release_year
+COUNT (title) AS total_movies_206
+MAX(rental_rate) AS max_rate
+MIN(replacement_cost) AS min_repl_cost
+AVG(rental_duration) AS avg_rental_dur 
+FROM film
+WHERE release_year = 2006
+GROUP BY rating;
+-- LIMIT 1
+--------------------------------------------------
+-- 1.- What is the average cost to rent a film in the Sakila stores?
+SELECT AVG(rental_rate) AS rental_date
+FROM film;
+--------------------------------------------------
+-- 2.- What is the average rental cost of films by rating?
+-- On average, what is the cheapest rating of films to rent? Most expensive?
+SELECT rating, AVG(f.rental_rate) AS rental_date
+FROM film
+GROUP BY rating
+ORDER BY AVG(rental_rate)
+--------------------------------------------------
+-- 3.- How much would it cost to replace all the films in the database?
+SELECT SUM(replacement_cost) AS total_cost
+FROM film
+--------------------------------------------------
+-- 4.- How much would it cost to replace all the films in each ratings category?
+SELECT rating, SUM(replacement_cost) AS total_cost
+FROM film
+GROUP BY 1
+--------------------------------------------------
+-- 5.-How long is the longest movie in the database? The shortest?
+SELECT MIN(length)
+FROM film;
+--------------------------------------------------
+-- Select count of actors first names in descending order:
+SELECT first_name, COUNT(first_name) AS name_count
+FROM actor
+GROUP BY first_name
+ORDER BY name_count DESC;
+--------------------------------------------------
+-- Select the average duration of movies by rating:
+SELECT rating, ROUND(AVG(rental_duration), 2) AS rental_duration
+FROM film
+GROUP BY rating
+ORDER BY rental_duration;
+--------------------------------------------------
+-- Select top ten replace costs for the length of the movie:
+SELECT length, ROUND(AVG(replacement_cost), 2) AS replacement_cost
+FROM film
+GROUP BY length
+ORDER BY replacement_cost DESC
+LIMIT 10;
+--------------------------------------------------
+-- Using the city and country tables, determine the number of cities in each country from:
+SELECT cr.country, COUNT(ci.city) AS cities
+FROM city AS ci
+INNER JOIN country AS cr
+ON ci.country_Id = cr.country_id
+GROUP BY cr.country
+ORDER BY cities DESC;
+--------------------------------------------------
+SELECT DISTINCT ON (customer_id) customer_id, inventory_id
+FROM rental
+ORDER BY customer_id, inventory_id DESC;
+--------------------------------------------------
+-- Retrieve the latest rental for each customer's first name, last name, and email address:
+SELECT DISTINCT ON (c.customer_id)
+c.first_name, 
+c.last_name, 
+c.email, 
+r.rental_date
+FROM rental AS r
+INNER JOIN customer AS c
+ON r.customer_id = c.customer_id
+ORDER BY c.customer_id, r.rental_date DESC, c.first_name;
+--------------------------------------------------
+-- Retrieve the latest rental date for each title:
+SELECT DISTINCT ON (f.title)
+f.title,
+r.rental_date
+FROM rental AS r
+INNER JOIN inventory AS i
+ON i.inventory_id = r.inventory_id
+INNER JOIN film AS f
+ON i.film_id = f.film_id
+ORDER BY f.title, r.rental_date DESC
+--------------------------------------------------
+-- Missing movies
+SELECT film_id, title
+FROM film
+WHERE film_id NOT IN
+    (
+        SELECT film_id
+        FROM inventory
+    )
