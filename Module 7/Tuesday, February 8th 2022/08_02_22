@@ -1,0 +1,65 @@
+CREATE TABLE cities (
+ id SERIAL PRIMARY KEY,
+ city VARCHAR(30) NOT NULL,
+ state VARCHAR(30) NOT NULL,
+ population INT
+);
+--------------------------------------------------
+INSERT INTO cities (city,state,population)
+VALUES ('Alameda', 'California', 79177),
+('Mesa', 'Arizona', 496401),
+('Boerne', 'Texas', 16056),
+('Boerne', 'Texas', 16056),
+('Anaheim', 'Texas', 352497),
+('Tucson', 'Arizona', 535677),
+('Garland', 'Texas', 238002);
+--------------------------------------------------
+SELECT * 
+FROM cities;
+--------------------------------------------------
+SELECT city
+FROM cities
+WHERE population > 100000;
+--------------------------------------------------
+SELECT population 
+FROM cities
+WHERE state = 'Texas'
+AND population > 100000;
+--------------------------------------------------
+-- Drop table if exists
+DROP TABLE IF EXISTS bird_song;
+--------------------------------------------------
+-- Create new table
+CREATE TABLE bird_song (
+    english_name VARCHAR,
+    country VARCHAR,
+    latitude DEC,
+    longitude DEC
+);
+--------------------------------------------------
+-- View table columns and data types
+SELECT * FROM bird_song;
+--------------------------------------------------
+-- Drop table if exists
+DROP TABLE firepower;
+--------------------------------------------------
+-- Create new table to import data
+CREATE TABLE firepower (
+	country VARCHAR,
+	ISO3 VARCHAR,
+	rank INT,
+	TotalPopulation INT,
+	ManpowerAvailable INT,
+	TotalMilitaryPersonnel INT,
+	ActivePersonnel INT,
+	ReservePersonnel INT,
+	TotalAircraftStrength INT,
+	FighterAircraft INT,
+	AttackAircraft INT,
+	TotalHelicopterStrength INT,
+	AttackHelicopters INT
+);
+--------------------------------------------------
+-- Import data from firepower.csv
+-- View the table to ensure all data has been imported correctly
+SELECT * FROM firepower;
