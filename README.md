@@ -1,5 +1,17 @@
 # MODULE 7: Employee Database with SQL
 
+In this lesson, I'll go through how to make entity relationship diagrams (ERDs) or database designs, how to construct and manage tables, and how to write basic to intermediate SQL queries. I will study and modify data in this module using SQL, or Structured Query Language.
+
+Technically speaking, SQL is a query language rather than a programming language. A query language asks inquiries of the data, whereas a programming language instructs the data on how to behave. Using relational databases, I will create SQL queries to query our data and identify connections between various data tables.
+
+One of the languages that data analysts utilize the most is SQL. Because so many businesses, like LinkedIn, Lyft, Uber, Spotify, and Instagram, utilize SQL, there is a significant need for individuals with this language's expertise. And not just big businesses use SQL. It is also used by small businesses across several sectors. Consider the several databases that a corporation like Lyft would have access to, including those containing information on its personnel, timestamps, and different vehicle kinds. What connections may be drawn between each of these data points? How is the data set structured? As I start going through this module, these are the kinds of questions I should be thinking about.
+
+Although SQL may be used with many other interfaces, I'll be using Postgres and pgAdmin for this module. I'll put our data into a database system called Postgres SQL, which is typically just referred to as Postgres. The interface used to communicate with Postgres is PgAdmin. I'll undertake data analysis using SQL statements at this point.
+
+Postgres is a dependable and user-friendly SQL database, therefore I'll be using it for my module. PgAdmin is the interface designed especially for Postgres, but it is also user-friendly and simple to use. Both interfaces are crammed with documentation in case I get confused, and there is also a helpful community if you have any queries.
+
+Let's examine SQL and relational databases in more detail.
+
 ## Overview of the Analysis
 
 Pewlett Hackard is a large company boasting several thousand employees and it's been around for a long time. As baby boomers begin to retire at a rapid rate Pewlett Hackard is looking toward the future in two ways. First, it's offering a retirement page for those who meet certain criteria. Second, it's starting to think about which positions will need to be filled in the near future. The number of upcoming retirements will leave thousands of job openings. What would happen to a company if they didn't look ahead and prepare for this many vacancies? It probably wouldn't be pretty.
